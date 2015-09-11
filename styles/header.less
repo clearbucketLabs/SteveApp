@@ -1,0 +1,93 @@
+.header {
+  min-height: 25px;
+  -webkit-app-region: drag;
+  -webkit-user-select: none;
+  background-color: #202020;
+  &.bordered {
+    border-bottom: 1px solid #303030;
+  }
+
+  display: flex;
+
+  .no-drag {
+    -webkit-app-region: no-drag;
+  }
+  .updates {
+    flex: 1 auto;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    margin-right: 20px;
+
+    img {
+      margin: 0 14px;
+      height: 16px;
+      width: 20px;
+    }
+  }
+
+  .login {
+    flex: 0 auto;
+    display: flex;
+    color: #88919C;
+    align-items: center;
+    justify-content: flex-end;
+    margin-right: 13px;
+
+    &:active {
+      img, span {
+        -webkit-filter: brightness(0.8);
+      }
+    }
+
+    img {
+      margin: 0 5px;
+    }
+  }
+
+  .buttons {
+    display: flex;
+    margin-left: 14px;
+
+    align-items: center;
+    justify-content: center;
+    &:hover {
+      .button-minimize.enabled {
+        .at2x('minimize.png', 10px, 10px);
+      }
+      .button-close.enabled {
+        .at2x('close.png', 10px, 10px);
+      }
+      .button-fullscreen.enabled {
+        .at2x('fullscreen.png', 10px, 10px);
+      }
+      .button-fullscreenclose.enabled {
+        .at2x('fullscreenclose.png', 10px, 10px);
+      }
+    }
+    .button {
+      flex: 0 auto;
+      .traffic-light();
+      &.button-close {
+        background-color: #ffffff;
+        border-color: #ffffff;
+      }
+      &.button-minimize {
+        background-color: #ffffff;
+        border-color: #ffffff;
+      }
+      &.button-fullscreen {
+        background-color: #ffffff;
+        border-color: #ffffff;
+      }
+      &.button-fullscreenclose {
+        background-color: #ffffff;
+        border-color: #ffffff;
+      }
+      &.disabled {
+        background-color: @traffic-light-gray;
+        border-color: @traffic-light-gray-border;
+      }
+    }
+  }
+}

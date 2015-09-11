@@ -1,0 +1,41 @@
+@import "variables.less";
+
+.home {
+  flex: 1 auto;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+
+  .home-content {
+    flex: 1 auto;
+    margin-top: 0px;
+    padding-top: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    max-width: 100%;
+    display: flex;
+    flex-direction: column;
+
+    .title {
+      margin-top: 0px;  
+      text-align: left;
+      font-size: 18px;
+      font-weight: 400;
+      color: @gray-darker;
+    }
+  }
+}
+
+.basicNavigation .Forward,.basicNavigation .Backward,.basicNavigation .Left, .basicNavigation .Right{
+  font-size: 40px;
+}
+
+.basicNavigation .Forward, .basicNavigation .Backward{
+  margin-left:25px;
+  display: inline-block;
+}
+
+.basicNavigation .Left{
+  display:inline-block;
+  margin-right: 20px;
+}
