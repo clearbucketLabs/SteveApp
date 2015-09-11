@@ -1,12 +1,5 @@
-# Electron Boilerplate React
-Boilerplate to kickstart creating an electron app with:
-- [Electron](http://electron.atom.io) *(formerly atom-shell)*
-- [React](https://facebook.github.io/react/)
-- [Gulp](http://gulpjs.com/)
-- [Less](http://lesscss.org/)
+# WIP - Universal remote data collection and contol dashboard for Unmanned robots or UAVs
 
-Reference project [Kitematic](https://github.com/kitematic/kitematic).
+Built with electron using react js
 
-# Getting started
-1. `npm install`
-2. `npm start`
+Note: node serial port needs rebuilding for it to work.

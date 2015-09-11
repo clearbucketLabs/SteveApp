@@ -3,13 +3,13 @@
   "version": "0.1.0",
   "author": "Eric Kelly",
   "description": "WIP - Universal remote data collection and contol dashboard for Unmanned robots or UAVs",
-  "homepage": "https://github.com/jimliu/electron-boilerplate-react",
+  "homepage": "https://github.com/clearbucketlabs/SteveApp",
   "main": "build/browser.js",
   "repository": {
     "type": "git",
-    "url": "git@github.com:erickelly/steve.git"
+    "url": "git@github.com:clearbucketlabs/SteveApp.git"
   },
-  "bugs": "https://github.com/erickelly/steve",
+  "bugs": "https://github.com/erickelly/steveapp",
   "scripts": {
     "start": "gulp",
     "test": "jest -c jest-unit.json",
