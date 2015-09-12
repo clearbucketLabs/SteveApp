@@ -92,7 +92,7 @@ var MenuTemplate = function () {
             metrics.track('Opened Issue Reporter', {
               from: 'menu'
             });
-            shell.openExternal('https://github.com/jimliu/electron-boilerplate-react/issues');
+            shell.openExternal('https://github.com/clearbucketlabs/SteveApp');
           }
         }
       ]

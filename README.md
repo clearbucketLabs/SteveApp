@@ -2,4 +2,4 @@
 
 Built with electron using react js
 
-Note: node serial port needs rebuilding for it to work.
+Note: node serial port needs rebuilding for it to work. (using gypt)

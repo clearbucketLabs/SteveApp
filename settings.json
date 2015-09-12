@@ -1,9 +1,9 @@
 {
   "app": {
-    "name": "Steve",
+    "name": "SteveApp",
     "beta": true,
   },
-  "title": "Steve",
+  "title": "SteveApp",
   "autoUpdater": {
     "enabled": false,
     "feedUrl": "http://UPDATE-SERVER/latest?version=[version]&beta=[beta]"

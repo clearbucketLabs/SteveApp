@@ -18,10 +18,10 @@ try {
     fs.readFileSync(
       path.join(
         process.env[
-          (process.platform === 'win32') ? 'USERPROFILE' : 'HOME'], 
-          'Library', 
-          'Application\ Support', 
-          settings.app.name, 
+          (process.platform === 'win32') ? 'USERPROFILE' : 'HOME'],
+          'Library',
+          'Application\ Support',
+          settings.app.name,
           'size'
     )));
 } catch (err) {}
@@ -38,7 +38,7 @@ app.on('ready', function () {
     width: size.width || 1000,
     height: size.height || 780,
     'min-width': 1000,
-    'min-height': 600,
+    'min-height': 500,
     'standard-window': false,
     resizable: true,
     frame: false,

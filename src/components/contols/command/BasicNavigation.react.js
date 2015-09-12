@@ -1,9 +1,10 @@
 var React = require('react');
+var EventEmitter = require('events').EventEmitter;
 
 /*
-  Basic Movement
+   Arrow Navigation
 */
-var BotNav = React.createClass({
+var baic_navigation = React.createClass({
 
     intervalId: null,
 
@@ -63,4 +64,4 @@ var BotNav = React.createClass({
     }
 });
 
-module.exports = BotNav;
+module.exports = baic_navigation;

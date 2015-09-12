@@ -1,9 +1,6 @@
-var
-    Menu = remote.require('menu'),
-    MenuItem = remote.require('menu-item'),
-    Router = require('react-router'),
-    classNames = require('classNames'),
-    metrics = require('../utils/MetricsUtil');
+var React = require('react/addons'),
+    classNames = require('classNames');
+
 
 var SerialConnection = React.createClass({
 
@@ -32,9 +29,11 @@ var SerialConnection = React.createClass({
     var connected = SteveApi.isPortOpen();
 
     return (
-        <div className="portConnect">
-          <a className="btn btn-success" onClick={this.onHandleClick}>{connected ? 'Disconnect' : 'Connect'}</a>
-        </div>
+        <ul className="portConnect">
+          <li><a className="btn btn-success" onClick={this.onHandleClick}>{connected ? 'Connected' : 'Connect'}</a></li>
+          <li>{SteveApi.port()}</li>
+        </ul>
+
     );
   }
 });
