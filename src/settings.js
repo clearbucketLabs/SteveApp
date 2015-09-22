@@ -5,13 +5,13 @@ var _ = require('lodash'),
 
 var settings = {
       app: {
-        name: "Remote Rover/UAV Console",
+        name: "SteveApp",
         beta: true,
       },
       menu: {
-        label: "Remote Rover/UAV Console",
+        label: "SteveApp",
       },
-      title: "Remote Rover/UAV Console",
+      title: "SteveApp",
       autoUpdater: {
         enabled: false,
         feedUrl: "http://UPDATE-SERVER/latest?version=[version]&beta=[beta]"

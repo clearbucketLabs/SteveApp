@@ -1,6 +1,8 @@
 var React = require('react/addons'),
     Router = require('react-router'),
-    BotNav = require('./Nav.react');
+    BotNav = require('./Nav.react'),
+    Dashboard = require('./Dashboard.react');
+
 
 var Home = React.createClass({
   mixins: [Router.Navigation],
@@ -11,8 +13,7 @@ var Home = React.createClass({
     return (
       <div className="home">
         <div className="home-content">
-          <div className="title">Dashboard</div>
-          <BotNav />
+          <Dashboard/>
         </div>
       </div>
     );

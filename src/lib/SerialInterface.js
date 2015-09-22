@@ -5,14 +5,13 @@ var settings = require('../settings'),
 
 
 
-if (localStorage.getItem('s_api.port') === null) {
-  localStorage.setItem('s_api.port', "none");
-}
+    if (localStorage.getItem('s_api.port') === null) {
+        localStorage.setItem('s_api.port', "none");
+    }
 
-if (localStorage.getItem('s_api.radiotype') === null) {
-  localStorage.setItem('s_api.radiotype', "xbee 2 serial");
-}
-
+    if (localStorage.getItem('s_api.radiotype') === null) {
+        localStorage.setItem('s_api.radiotype', "xbee 2 serial");
+    }
 
 
 var sApi = {

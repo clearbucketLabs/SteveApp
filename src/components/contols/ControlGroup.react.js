@@ -1,6 +1,0 @@
-/*
- * Group multiple controls
- *
- */
-
- 

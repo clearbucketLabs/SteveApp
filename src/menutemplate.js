@@ -60,6 +60,16 @@ var MenuTemplate = function () {
       ]
     },
     {
+   label: 'View',
+   submenu: [
+     {
+       label: 'Toggle DevTools',
+       accelerator: 'Alt+' + util.CommandOrCtrl() + '+I',
+       click: function() { remote.getCurrentWindow().toggleDevTools(); }
+     }
+   ]
+ },
+    {
       label: 'Window',
       submenu: [
       {
@@ -83,6 +93,7 @@ var MenuTemplate = function () {
       }
       ]
     },
+
     {
       label: 'Help',
       submenu: [
