@@ -1,0 +1,1 @@
+/* Manage control command binding configuration */

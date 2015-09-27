@@ -1,12 +1,14 @@
-var React = require('react');
-var EventEmitter = require('events').EventEmitter;
+'use strict'
 
 /*
    Arrow Navigation
 */
-var baic_navigation = React.createClass({
 
-    intervalId: null,
+
+var React = require('react');
+var EventEmitter = require('events').EventEmitter;
+var intervalId=null;
+var baic_navigation = React.createClass({
 
     HandleMouseUp: function (event){
         /* Mouse UP! */
@@ -64,4 +66,14 @@ var baic_navigation = React.createClass({
     }
 });
 
-module.exports = baic_navigation;
+var control = {
+              name: "Basic Navigation",
+              description: "",
+              type: "command",
+              control: baic_navigation,
+              defaultSettings: {
+                          min_size: {h: 1, w:2}
+                        }
+              };
+
+module.exports = control;

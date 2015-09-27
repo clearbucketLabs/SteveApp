@@ -28,9 +28,6 @@ var sApi = {
       setPort: function (portname){
         localStorage.setItem('s_api.port', portname);
       },
-      setRadio: function (radio){
-          localStorage.setItem('s_api.radiotype',radio);
-      },
 
       port: function () {
         return localStorage.getItem('s_api.port');
@@ -191,5 +188,7 @@ var sApi = {
 
       }
 };
+
 Emitter(sApi);
+
 module.exports = sApi;

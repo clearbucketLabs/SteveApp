@@ -1,8 +1,24 @@
+'use strict'
 
-var React = require('react');
 
+var React = require('react'),
+    ControlLoader = require('../lib/ControlLoader');
 
 var AddControlSensor = React.createClass({
+
+  getControls(){
+
+    if (ControlLoader.allControls.length > 0){
+        return(_.each(ControlLoader.allControls,function(control){
+            return(<li>{control.name} ({control.type})</li>);
+          })
+      );
+    }
+
+    return(<li>No Controls Found</li>)
+
+  },
+
   render() {
     return (
       <Modal {...this.props} bsSize="large" aria-labelledby="contained-modal-title-lg">
@@ -11,8 +27,7 @@ var AddControlSensor = React.createClass({
         </Modal.Header>
         <Modal.Body>
           <ul>
-            <li>Basic Movement</li>
-            <li>Button</li>
+              {this.getControls()}
           </ul>
         </Modal.Body>
         <Modal.Footer>

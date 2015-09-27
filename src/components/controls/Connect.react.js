@@ -5,7 +5,9 @@ var React = require('react/addons'),
 var SerialConnection = React.createClass({
 
   getInitialState: function(){
-    return {portOpen: SteveApi.isPortOpen()}
+    return {
+      portOpen: SteveApi.isPortOpen()
+    }
   },
 
   componentDidMount: function () {
@@ -33,7 +35,6 @@ var SerialConnection = React.createClass({
           <li><a className="btn btn-success" onClick={this.onHandleClick}>{connected ? 'Connected' : 'Connect'}</a></li>
           <li>{SteveApi.port()}</li>
         </ul>
-
     );
   }
 });

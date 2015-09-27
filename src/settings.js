@@ -15,6 +15,9 @@ var settings = {
       autoUpdater: {
         enabled: false,
         feedUrl: "http://UPDATE-SERVER/latest?version=[version]&beta=[beta]"
+      },
+      controls:{
+        path: "components/controls"
       }
     },
     settingsjson = {};

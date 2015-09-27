@@ -1,7 +1,7 @@
 var React = require('react/addons'),
     Router = require('react-router'),
     Main = require('./components/Main.react'),
-    Home = require('./components/Home.react'),
+    Dashboard = require('./components/Dashboard.react'),
     About = require('./components/About.react'),
     Preferences = require('./components/Preferences.react'),
 
@@ -20,7 +20,7 @@ var React = require('react/addons'),
 var routes = (
   <Route name="app" path="/" handler={App}>
     <Route name="Main" path="/" handler={Main}>
-      <DefaultRoute name="home" handler={Home} />
+      <DefaultRoute name="home" handler={Dashboard} />
       <Route name="about" path="/about" handler={About} />
       <Route name="preferences" path="/preferences" handler={Preferences}/>
     </Route>

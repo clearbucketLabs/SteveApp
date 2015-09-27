@@ -11,7 +11,9 @@ var remote = require('remote'),
     webUtil = require('./utils/WebUtil'),
   //  metrics = require('./utils/MetricsUtil'),
     serialPort = require("serialport"),
-    SteveApi = require("./lib/SteveApi");
+    SteveApi = require("./lib/SteveApi"),
+    settings = require('./settings'),
+    ControlLoader=require('./lib/ControlLoader');
 
 
 
@@ -27,6 +29,9 @@ var router = Router.create({
 
 router.run(Handler => React.render(<Handler/>, document.body));
 routerContainer.set(router);
+
+ControlLoader.loadControls(settings.controls.path);
+
 
 
 ipc.on('application:quitting', function () {
