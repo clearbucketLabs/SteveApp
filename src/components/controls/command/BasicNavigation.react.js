@@ -72,8 +72,14 @@ var control = {
               type: "command",
               control: baic_navigation,
               defaultSettings: {
-                          min_size: {h: 1, w:2}
-                        }
+                                  min_size: {h: 1, w:2}
+                               },
+              events: [
+                          "up",
+                          "down",
+                          "left",
+                          "right",
+                      ]
               };
 
 module.exports = control;

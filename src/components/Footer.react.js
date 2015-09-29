@@ -5,10 +5,11 @@ var React = require('react/addons'),
 var Footer = React.createClass({
 
   render: function () {
-    return (
+    return (    
       <div className="footerbar">
           <Connection />
       </div>
+
     );
   }
 });

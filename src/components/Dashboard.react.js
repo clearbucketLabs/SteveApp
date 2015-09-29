@@ -10,17 +10,11 @@ var dashboardActions =require("./../actions/dashboardActions");
 var Dashboard = React.createClass({
   mixins: [PureRenderMixin],
 
-  componentWillMount: function(){
-
-  },
   componentWillUnmount() {
     DashboardStore.unlisten(this.onChange);
   },
   componentDidMount: function(){
     DashboardStore.listen(this.onDashboardChanged);
-  },
-  componentDidUpdate: function(){
-
   },
   getDefaultProps: function() {
     return {
@@ -65,7 +59,7 @@ var Dashboard = React.createClass({
   },
 
   showAddControl: function(){
-
+      dashboardActions.showAddControl();
   },
 
   renderControls: function(){
@@ -101,7 +95,7 @@ var Dashboard = React.createClass({
           <div className="home">
             <div className="home-content">
               <div className="no-controls">
-                <p>No Controls have been added yet, Add some now <a href="#" onClick={this.showAddControl()}>[+]</a></p>
+                <p>No Controls have been added yet, Add some now <a href="#" onClick={this.showAddControl}>[+]</a></p>
               </div>
           </div>
         </div>

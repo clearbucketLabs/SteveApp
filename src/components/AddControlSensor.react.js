@@ -1,16 +1,41 @@
-'use strict'
-
-
 var React = require('react'),
-    ControlLoader = require('../lib/ControlLoader');
+    ControlLoader = require('../lib/ControlLoader'),
+    DashboardStore = require('../stores/DashboardStore'),
+    dashboardActions = require('../actions/dashboardActions'),
+    _=require('lodash');
+
+var Modal = require('react-bootstrap/lib/Modal');
 
 var AddControlSensor = React.createClass({
 
-  getControls(){
+  getDefaultProps: function(){
+    return {};
+  },
+  getInitialState: function(){
 
-    if (ControlLoader.allControls.length > 0){
-        return(_.each(ControlLoader.allControls,function(control){
-            return(<li>{control.name} ({control.type})</li>);
+    return {
+        showModal: false
+    };
+  },
+  componentDidMount: function(){
+      DashboardStore.listen(this.onChange);
+  },
+
+  onChange: function(){
+      this.setState(
+        {
+          showModal: DashboardStore.getState().addControlVisible
+        });
+  },
+  getControls: function(){
+
+    if(!this.state.showModal)
+      return(<li></li>);
+
+    if (ControlLoader.allControls().length > 0){
+      let i=1;
+        return(_.map(ControlLoader.allControls(),function(control){
+            return(<li key={i++}>{control.control.name} ({control.control.type})</li>);
           })
       );
     }
@@ -18,22 +43,26 @@ var AddControlSensor = React.createClass({
     return(<li>No Controls Found</li>)
 
   },
+  close: function(){
+      dashboardActions.hideAddControl();
+  },
 
-  render() {
+  render: function() {
     return (
-      <Modal {...this.props} bsSize="large" aria-labelledby="contained-modal-title-lg">
+      <Modal show={this.state.showModal} onHide={this.close}>
         <Modal.Header closeButton>
-          <Modal.Title id="contained-modal-title-lg">Add Control or Sensor</Modal.Title>
+          <Modal.Title id="contained-modal-title-sm">Modal heading</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <ul>
               {this.getControls()}
-          </ul>
+            </ul>
         </Modal.Body>
         <Modal.Footer>
-          <Button onClick={this.props.onHide}>Close</Button>
+          <a onClick={this.close}>Close</a>
         </Modal.Footer>
       </Modal>
     );
   }
 });
+module.exports=AddControlSensor;

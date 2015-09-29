@@ -39,4 +39,7 @@ var SerialConnection = React.createClass({
   }
 });
 
-module.exports = SerialConnection;
+
+
+
+module.exports = control;
