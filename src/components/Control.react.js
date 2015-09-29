@@ -17,8 +17,7 @@
        getDefaultProps: function() {
          return {
            control: {},
-           controlData: {},
-           onRemoveItem: function(){},
+           controlData: {}
          };
        },
        getInitialState: function() {
@@ -28,7 +27,7 @@
        },
 
        loadControl: function() {
-          return React.createElement(nav.control);
+          return React.createElement(this.props.control.control.control);
       },
 
       onRemoveItem: function(i) {

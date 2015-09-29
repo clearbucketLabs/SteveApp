@@ -39,7 +39,15 @@ var SerialConnection = React.createClass({
   }
 });
 
-
+var control = {
+              name: "Connect Button",
+              description: "",
+              type: "syscommand",
+              control: SerialConnection,
+              defaultSettings: {
+                                  min_size: {h: 1, w:2}
+                               }
+              };
 
 
 module.exports = control;

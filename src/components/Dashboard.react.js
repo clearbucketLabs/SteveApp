@@ -8,7 +8,6 @@ var DashboardStore = require("./../stores/DashboardStore");
 var dashboardActions =require("./../actions/dashboardActions");
 
 var Dashboard = React.createClass({
-  mixins: [PureRenderMixin],
 
   componentWillUnmount() {
     DashboardStore.unlisten(this.onChange);
@@ -33,9 +32,8 @@ var Dashboard = React.createClass({
   },
 
   onDashboardChanged: function(){
-    var lastState = this.state;
-    lastState.controls = DashboardStore.getState().dashboardControlsList;
-    this.setState(lastState);
+    var controls = DashboardStore.getState().dashboardControlsList;
+    this.setState({controls: controls});
   },
 
   onControlData: function(){
@@ -63,21 +61,21 @@ var Dashboard = React.createClass({
   },
 
   renderControls: function(){
-
+    var _this = this;
   return _.map(this.state.controls,function (control) {
-    let controldata = {};
+      let controldata = {};
 
-        if(this.state.controlData.length > 0)
+        if(_this.state.controlData.length > 0)
         {
-            let result = _.result(_.find(control, control.Id), 'controlId');
+            let result = _.result(_.find(control.control, control.Id), 'controlId');
               if(!_.isUndefined(result)){
                 controlData = result;
               }
         }
 
         return (
-          <div key={control.controlId}>
-            <Control control={control} data={controlData}></Control>
+          <div key={control.Id}>
+            <Control control={control} data={controldata}></Control>
           </div>
           );
         }

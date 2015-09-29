@@ -25,12 +25,12 @@ var barmeter = react.createClass({
 });
 
 var control = {
-              name: "Bar Meter",
+              name: "BarMeter",
               description: "",
               type: "sensor",
-              control: SensorList,
+              control: barmeter,
               defaultSettings: {
-                                  styles:{};
+                                  styles:{},
                                   min_size: {h: 1, w:2}
                                }
               };
