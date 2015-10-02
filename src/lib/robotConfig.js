@@ -5,20 +5,8 @@
      fs = require('fs'),
      path = require('path');
 
-  var path = "../../robots",
+  var configurationPath = "../../robots",
 
-  schemaConfig = {
-        name: "",
-        interface: [{
-          name: "string",
-          type: "serial,network,other",
-          data_format: "raw",
-          readonly:false,
-          r_sync:"",
-          t_sync:"",
-          checksum:"bool"}
-        ],
-  },
 
   settingsjson = {},
   loaded=false;
@@ -31,7 +19,7 @@
 
   function openConfig(name){
     try {
-       settingsjson=JSON.parse(fs.readFileSync(path.join(__dirname,path,name+'.json'), 'utf8'));
+       settingsjson=JSON.parse(fs.readFileSync(path.join(__dirname,configurationPath,name+'.json'), 'utf8'));
     } catch (err) {
         loaded=false;
         return err;
@@ -45,7 +33,20 @@ module.exports = {
 
       list: function(){
 
+        let deviceConfig=fs.readdirSync(configurationPath).filter(function(file){
+            return file.match('.config.json');
+        });
+
+        return _.map(deviceConfig,function(filename){
+
+          let file = JSON.parse(fs.readFileSync(path.join(__dirname,configurationPath,filename), 'utf8'));
+                return {
+                   name: file.name,
+                   file: filename
+                }
+        });
       },
+
       load: function(name){
 
         var status = this.openConfig(name);

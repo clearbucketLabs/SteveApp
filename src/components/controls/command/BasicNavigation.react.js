@@ -12,28 +12,19 @@ var baic_navigation = React.createClass({
 
     HandleMouseUp: function (event){
         /* Mouse UP! */
-        SteveApi.api_stop();
-        clearInterval(this.intervalId);
-        console.log("mouse up " + this.intervalId);
-    }.bind(this),
+    },
 
     HandleForwardHold: function(event){
       //send command at an interval
-      var speedValue = 0;
 
-      this.intervalId =  setInterval(function(){
-          //Accelerate
-          SteveApi.api_moveForward(speedValue);
-          speedValue *= 2;
-          console.log("mouse down");
-        },1000);
-    }.bind(this),
+    },
 
     HandleStopClick: function(event){
 
     },
+
     HandleLeftClick: function (event){
-      SteveApi.api_moveLeft();
+    //  SteveApi.api_moveLeft();
     },
     HandleRightClick: function(event){
       SteveApi.api_moveRight();
@@ -67,19 +58,18 @@ var baic_navigation = React.createClass({
 });
 
 var control = {
-              name: "Basic Navigation",
-              description: "",
-              type: "command",
-              control: baic_navigation,
-              defaultSettings: {
+                name: "Basic Navigation",
+                description: "",
+                type: "command",
+                control: baic_navigation,
+                defaultSettings: {
                                   min_size: {h: 1, w:2}
-                               },
-              events: [
-                          "up",
-                          "down",
-                          "left",
-                          "right",
-                      ]
+                                  },
+                commands: [ {name: "up",behaviour:"", hasValue:false },
+                            {name: "down",behaviour: "", hasValue:false },
+                            {name: "left",behaviour: "", hasValue:false },
+                            {name: "right",behaviour: "", hasValue:false }
+                          ],
               };
 
 module.exports = control;

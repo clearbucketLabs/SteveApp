@@ -1,5 +1,5 @@
 {
-  "name": "Steve V1",
+  "name":"Steve V1",
   "interface":[
                 {
                  "name": "RC",
@@ -16,22 +16,32 @@
                 "data_format": "ascii",
                 "readonly": true,
                 "t_sync": "",
-                "r_sync": ""
+                "r_sync": "",
+                "log": true
                }
              ],
   "commands":[
       {
-        "name":"forward",
+        "name":"drive",
         "interface":"RC",
         "length": "compute",
-        "data":"[length],0x01,0x00,0xSS",
+        "data":"[T_SYNC],[LENGTH],0x01,0x00,[S],[S],[D]",
         "variables":[{"name":"speed",
-                      "placeholder":"SS",
+                      "placeholder":"S",
                       "type":"byte",
                       "length":"2",
-                      "min-value":"0",
+                      "min-value":"-400",
                       "max-value":"400"
-                     }],
+                     },
+                     {
+                      "name":"direction",
+                      "placeholder":"D",
+                      "type":"byte",
+                      "length":"1",
+                      "min-value":"0",
+                      "max-value":"90"
+                      }
+                   ],
         "response":{
                     "expect": "false",
                     "timeout":100,
@@ -39,6 +49,57 @@
                    }
       }
   ],
+
+  "response_format":[
+                {
+                 "name": "Encoder Sensor",
+                 "sync":"[R_SYNC]",
+                 "data_format":[
+                                  {
+                                    "name": "Type",
+                                    "length": 1,
+                                    "data_type": "byte",
+                                    "rules": [
+                                               {"op":"eq","value":10}
+                                            ],
+                                    "endianess": ""
+                                  },
+                                  {
+                                    "name": "Length",
+                                    "length": 1,
+                                    "data_type": "byte",
+                                  },
+                                  {
+                                    "name": "Sensor Group",
+                                    "length": 1,
+                                    "data_type": "byte",
+                                  },
+                                  {
+                                    "name": "Raw Encoder Right",
+                                    "length":"4",
+                                    "data_type": "int",
+                                  },
+                                  {
+                                    "name": "Raw Encoder Left",
+                                    "length":"4",
+                                    "data_type": "int",
+                                  },
+                                  {
+                                    "name": "Speed left",
+                                    "length":"4",
+                                    "data_type": "float",
+                                    "endianess": "bigendian"
+                                  },
+                                  {
+                                    "name": "Speed Right",
+                                    "length":"4",
+                                    "data_type": "float",
+                                    "endianess": "bigendian"
+                                  },
+                              ],
+                }
+  ]
+
 
 
 }
