@@ -9,9 +9,6 @@ var remote = require('remote'),
     routes = require('./routes'),
     template = require('./menutemplate'),
     webUtil = require('./utils/WebUtil'),
-  //  metrics = require('./utils/MetricsUtil'),
-    serialPort = require("serialport"),
-    SteveApi = require("./lib/SteveApi"),
     settings = require('./settings'),
     ControlLoader=require('./lib/ControlLoader');
 

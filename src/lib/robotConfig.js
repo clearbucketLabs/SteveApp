@@ -14,7 +14,7 @@
 
   function validate(){
       //Check required nodes      //Check values
-      //schema check
+      //schema check, duplicate names...
   }
 
   function openConfig(name){
@@ -24,7 +24,9 @@
         loaded=false;
         return err;
     }
+
     loaded=true;
+
     return true;
   }
 

@@ -3,8 +3,6 @@
  *
  */
 var react = require('react');
-
-
 var barmeter = react.createClass({
 
     getDefaultProps:function(){
@@ -18,9 +16,10 @@ var barmeter = react.createClass({
     componentDidMount: function(){
 
     },
-
     render:function(){
-        <div><span>Bar Meter</span></div>
+        <div>
+          <span>Bar Meter</span>
+       </div>
     }
 });
 

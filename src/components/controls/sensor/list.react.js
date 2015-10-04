@@ -19,8 +19,9 @@ var control = {
               type: "sensor",
               control: SensorList,
               defaultSettings: {
-                                  min_size: {h: 1, w:2}
-                               }
+                          min_size: {h: 1, w:2}
+                        }
               };
+
 
 module.exports=control;

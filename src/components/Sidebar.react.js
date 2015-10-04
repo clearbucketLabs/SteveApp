@@ -1,9 +1,7 @@
 var Menu = remote.require('menu'),
     MenuItem = remote.require('menu-item'),
     Router = require('react-router'),
-    classNames = require('classNames'),
-    metrics = require('../utils/MetricsUtil'),
-    SerialConnection = require('./SerialConnection.react');
+    classNames = require('classNames');
 
 var SideBar = React.createClass({
   mixins: [Router.Navigation],

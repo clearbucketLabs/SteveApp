@@ -2,6 +2,7 @@
 /*
  * Base Control - Instantiates dashboard item, provides context menu and
  * settings configuration for the control if any.
+ * Also works with the mapper for data transforms, filtering etc...
  */
  var PureRenderMixin = require('react/lib/ReactComponentWithPureRenderMixin'),
      _ = require('lodash'),

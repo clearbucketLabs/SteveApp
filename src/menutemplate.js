@@ -3,7 +3,6 @@ var remote = require('remote'),
     shell = require('shell'),
     router = require('./router'),
     util = require('./utils/Util'),
-    metrics = require('./utils/MetricsUtil'),
     settings = require('./settings');
 
 

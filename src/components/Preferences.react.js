@@ -14,16 +14,6 @@ var Preferences = React.createClass({
     this.goBack();
     metrics.track('Went Back From Preferences');
   },
-  handleChangeMetricsEnabled: function (e) {
-    var checked = e.target.checked;
-    this.setState({
-      metricsEnabled: checked
-    });
-    metrics.setEnabled(checked);
-    metrics.track('Toggled util/MetricsUtil', {
-      enabled: checked
-    });
-  },
   render: function () {
     return (
       <div className="preferences">

@@ -8,7 +8,8 @@
                  "readonly":false,
                  "r_sync":"0xAA,0x00",
                  "t_sync":"0x9D,0x5D,0x5D",
-                 "checksum":false
+                 "checksum":false,
+                 "logging":true
                },
                {
                 "name":"Debug",
@@ -17,7 +18,7 @@
                 "readonly": true,
                 "t_sync": "",
                 "r_sync": "",
-                "log": true
+                "logging": true
                }
              ],
   "commands":[
@@ -50,9 +51,29 @@
       }
   ],
 
-  "response_format":[
+  "responses":[ {
+                  "name": "Version",
+                  "interface": "RC",
+                  "sync": "[R_SYNC]",
+                  "data_format":[
+                    {
+                      "name": "Type",
+                      "length": 1,
+                      "data_type":"byte",
+                      "rules":[
+                          {"op":"eq","value":1}
+                      ]
+                    },
+                    {
+                     "name": "version",
+                     "length": 2,
+                     "data_type": "int"
+                    },
+                  ]
+                },
                 {
                  "name": "Encoder Sensor",
+                 "interface": "RC",
                  "sync":"[R_SYNC]",
                  "data_format":[
                                   {
@@ -96,10 +117,44 @@
                                     "data_type": "float",
                                     "endianess": "bigendian"
                                   },
+                                  {
+                                    "name": "Current Left",
+                                    "length":"4",
+                                    "data_type": "int",
+                                    "endianess": "bigendian"
+                                  },
+                                  {
+                                    "name": "Current Right",
+                                    "length":"4",
+                                    "data_type": "int",
+                                    "endianess": "bigendian"
+                                  },
+                                  {
+                                    "name": "Fault Left",
+                                    "length":"1",
+                                    "data_type": "bool",
+                                    "endianess": ""
+                                  },
+                                  {
+                                    "name": "Fault Right",
+                                    "length":"1",
+                                    "data_type": "bool",
+                                    "endianess": ""
+                                  },
+                                  {
+                                    "name": "Time Stamp",
+                                    "length":"4",
+                                    "data_type": "datetime",
+                                    "endianess": "bigendian"
+                                  },
+                                  {
+                                    "name": "Milliseconds",
+                                    "length":"4",
+                                    "data_type": "long",
+                                    "endianess": "bigendian"
+                                  },
+
                               ],
                 }
-  ]
-
-
-
+              ]
 }
