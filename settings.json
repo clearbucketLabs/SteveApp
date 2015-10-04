@@ -7,5 +7,6 @@
   "autoUpdater": {
     "enabled": false,
     "feedUrl": "http://UPDATE-SERVER/latest?version=[version]&beta=[beta]"
-  }
+  },
+  "dashboard": "selectedDashboard"
 }

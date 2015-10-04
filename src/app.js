@@ -10,7 +10,8 @@ var remote = require('remote'),
     template = require('./menutemplate'),
     webUtil = require('./utils/WebUtil'),
     settings = require('./settings'),
-    ControlLoader=require('./lib/ControlLoader');
+    ControlLoader=require('./lib/ControlLoader'),
+    dashboardActions=require('./actions/dashboardActions')
 
 
 
@@ -28,6 +29,11 @@ router.run(Handler => React.render(<Handler/>, document.body));
 routerContainer.set(router);
 
 ControlLoader.loadControls(settings.controls.path);
+
+
+//Get Configurations - Dashboard+robots
+
+
 
 
 

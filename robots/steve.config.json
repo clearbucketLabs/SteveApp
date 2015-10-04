@@ -26,7 +26,7 @@
         "name":"drive",
         "interface":"RC",
         "length": "compute",
-        "data":"[T_SYNC],[LENGTH],0x01,0x00,[S],[S],[D]",
+        "data":"[T_SYNC],[LENGTH],0x01,0x00,[S1],[S2],[D1]",
         "variables":[{"name":"speed",
                       "placeholder":"S",
                       "type":"byte",

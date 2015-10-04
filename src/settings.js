@@ -18,7 +18,8 @@ var settings = {
       },
       controls:{
         path: "components/controls"
-      }
+      },
+      selectedDashboard: ""
     },
     settingsjson = {};
 try {

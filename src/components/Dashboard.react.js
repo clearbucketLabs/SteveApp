@@ -10,7 +10,7 @@ var dashboardActions =require("./../actions/dashboardActions");
 var Dashboard = React.createClass({
 
   componentWillUnmount() {
-    DashboardStore.unlisten(this.onChange);
+    DashboardStore.unlisten(this.onDashboardChanged);
   },
   componentDidMount: function(){
     DashboardStore.listen(this.onDashboardChanged);
@@ -47,7 +47,8 @@ var Dashboard = React.createClass({
 
   onLayoutChange: function(layout) {
     //this.props.onLayoutChange(layout);
-    this.setState({layout: layout});
+    //this.setState({layout: layout});
+    dashboardActions.saveDashboard(layout);
   },
 
   onRemoveItem: function(i) {
@@ -62,6 +63,7 @@ var Dashboard = React.createClass({
 
   renderControls: function(){
     var _this = this;
+
   return _.map(this.state.controls,function (control) {
       let controldata = {};
 
@@ -104,7 +106,7 @@ var Dashboard = React.createClass({
     return (
       <div className="home">
         <div className="home-content">
-        <ReactGridLayout className="layout" cols={12} rows={30} rowHeight={30} isResizable={true} verticalCompact={false}>
+        <ReactGridLayout className="layout" cols={12} rows={30} rowHeight={30} isResizable={true} verticalCompact={false} onLayoutChange={this.onLayoutChange}>
             {this.renderControls()}
         </ReactGridLayout>
       </div>

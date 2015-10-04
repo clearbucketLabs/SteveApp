@@ -5,8 +5,6 @@ var settings = require('../settings'),
 
 
 
-//Instantiate with Object.create.
-
 module.exports = {
       serialport: NaN,
       portOpen: false,

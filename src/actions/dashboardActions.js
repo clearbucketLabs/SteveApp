@@ -14,8 +14,11 @@ var DashboardActions=alt.createActions({
                     removeControl: function (dashboardControl){
                       this.dispatch(dashboardControl);
                     },
-                    saveDashboard: function (dashboardControls){
-                      this.dispatch(dashboardControls);
+                    saveDashboard: function (layout){
+                      this.dispatch(layout);
+                    },
+                    loadDashboard: function(data){
+                      this.dispatch(data)
                     }
 });
 

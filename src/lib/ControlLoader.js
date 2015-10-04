@@ -68,7 +68,7 @@ let ControlLoader = {
       getControl: function(name){
 
         if(loadedControls.length > 0){
-            return _.return(_.find(loadedControls,type),'name');
+            return _.return(_.find(loadedControls,name),'name');
         }else{
           return undefined;
         }

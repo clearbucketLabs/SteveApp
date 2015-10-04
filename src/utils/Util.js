@@ -19,6 +19,22 @@ module.exports = {
       });
     });
   },
+
+  saveDashboardConfiguration: function(name,config){
+
+    if(name.trim().length == 0)
+    {
+         name='default';
+    }
+
+    let filename = name.trim() + '.dashboard.json';
+
+    fs.writeFile(filename, JSON.stringify(config), function (err) {
+      if (err) throw err;
+      console.log('It\'s saved!');
+    });
+  },
+
   isWindows: function () {
     return process.platform === 'win32';
   },
