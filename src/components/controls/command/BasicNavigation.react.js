@@ -59,6 +59,7 @@ var baic_navigation = React.createClass({
 
 var control = {
                 name: "Basic Navigation",
+                guid: "b24052cd-5b3b-4a26-88ac-df4cd1e8c2c0",
                 description: "",
                 type: "command",
                 control: baic_navigation,

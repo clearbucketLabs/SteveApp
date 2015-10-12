@@ -15,6 +15,7 @@ var SensorList = React.createClass({
 
 var control = {
               name: "Sensor list",
+              guid: "951b91f4-01b6-4945-b39d-fa5fc16dce40",
               description: "",
               type: "sensor",
               control: SensorList,

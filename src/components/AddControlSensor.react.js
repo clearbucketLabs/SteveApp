@@ -65,7 +65,7 @@ var AddControlSensor = React.createClass({
   },
 
   addControl: function(){
-      dashboardActions.addControl(this.state.controlSelected);
+      dashboardActions.addControl(this.state.controlSelected.guid);
       //this.close();
   },
 

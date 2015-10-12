@@ -23,6 +23,7 @@ Menu.setApplicationMenu(Menu.buildFromTemplate(template()));
 
 deviceManager.init();
 
+
 var routes = require('./routes');
 
 var router = Router.create({
@@ -38,10 +39,7 @@ ControlLoader.loadControls(settings.controls.path);
 //Get Configurations - Dashboard+robots
 
 ipc.on('application:quitting', function () {
-  if(SteveApi.isPortOpen)
-    {
-      SteveApi.closePort();
-    }
+    deviceManager.stop(); //Stop/Close Connections that may exist.
 });
 
 

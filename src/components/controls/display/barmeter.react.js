@@ -25,6 +25,7 @@ var barmeter = react.createClass({
 
 var control = {
               name: "BarMeter",
+              guid: "d73c851a-ecdf-4eda-adac-4645b512085f",
               description: "",
               type: "sensor",
               control: barmeter,

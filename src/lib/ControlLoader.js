@@ -64,11 +64,10 @@ let ControlLoader = {
               return undefined;
             }
       },
-
-      getControl: function(name){
+      getControl: function(guid){
 
         if(loadedControls.length > 0){
-            return _.find(loadedControls,{'name': name});
+            return _.find(loadedControls,{'guid': guid});
         }else{
           return undefined;
         }

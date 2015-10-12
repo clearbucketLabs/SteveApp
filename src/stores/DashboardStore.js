@@ -4,7 +4,8 @@ let alt = require('../alt'),
     actions = require('./../actions/dashboardActions'),
     deviceActions = require('./../actions/deviceActions'),
     utils = require('./../utils/Util'),
-    deviceManager = require('./../lib/deviceManager');
+    deviceManager = require('./../lib/deviceManager'),
+    controlLoader = require('./../lib/ControlLoader');
 
 let DashboardStore = alt.createStore({
   displayName: 'DashboardStore',
@@ -33,8 +34,27 @@ let DashboardStore = alt.createStore({
     //device was selected
     this.setState({configurationSelected:true});
     console.log('Dashboard store loaded');
+
     var dashboardLayout = deviceManager.getDashboard();
+    this.loadControls(dashboardLayout);
     this.setState({loaded:true});
+  },
+
+  loadControls: function(layout){
+
+    var controlList = {};
+
+     _.each(layout.tab[0].controls,function(item){
+        var control = controlLoader.getControl(item.guid);
+
+            control.layout=item.layout;
+            control.Id=item.Id;
+
+            controlList[control.Id]=control;
+    });
+
+    this.setState({dashboardControlsList: controlList});
+
   },
 
   saveDashboard: function(layout){
@@ -46,7 +66,7 @@ let DashboardStore = alt.createStore({
                           let ctrl = this.state.dashboardControlsList[l.i];
                           ctrl.layout={w:l.w,h:l.h,x:l.x,y:l.y}
                           return {
-                                  controlId: ctrl.Id,
+                                  Id: ctrl.Id,
                                   name: ctrl.name,
                                   type: ctrl.type,
                                   layout: ctrl.layout
@@ -77,8 +97,10 @@ let DashboardStore = alt.createStore({
       });
   },
 
-  addItem: function (control) {
+  addItem: function (guid) {
     var controls = this.state.dashboardControlsList;
+    var control = controlLoader.getControl(guid);
+
     control.Id = Math.floor(Math.random() * (10000 - 10 + 1)) + 10;
     control.layout = {x:0,y:0,w:control.defaultSettings.min_size.w,h:control.defaultSettings.min_size.h};
     controls[control.Id]=control;

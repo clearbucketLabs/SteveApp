@@ -7,8 +7,7 @@
  var PureRenderMixin = require('react/lib/ReactComponentWithPureRenderMixin'),
      _ = require('lodash'),
      React = require('react'),
-     classNames = require('classNames'),
-     ControlLoader = require('../lib/ControlLoader');
+     classNames = require('classNames');
 
 
 
