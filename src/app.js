@@ -6,13 +6,14 @@ var remote = require('remote'),
     Router = require('react-router'),
     ipc = require('ipc'),
     routerContainer = require('./router'),
-    routes = require('./routes'),
     template = require('./menutemplate'),
     webUtil = require('./utils/WebUtil'),
     settings = require('./settings'),
     ControlLoader=require('./lib/ControlLoader'),
-    dashboardActions=require('./actions/dashboardActions')
-
+    dashboardActions=require('./actions/dashboardActions'),
+    dashboardStore=require('./stores/DashboardStore'),
+    dataStore=require('./stores/dataStore'),
+    deviceManager = require('./lib/deviceManager');
 
 
 webUtil.addWindowSizeSaving();
@@ -20,9 +21,12 @@ webUtil.addLiveReload();
 webUtil.disableGlobalBackspace();
 Menu.setApplicationMenu(Menu.buildFromTemplate(template()));
 
+deviceManager.init();
+
+var routes = require('./routes');
 
 var router = Router.create({
-  routes: routes
+    routes: routes
 });
 
 router.run(Handler => React.render(<Handler/>, document.body));
@@ -32,10 +36,6 @@ ControlLoader.loadControls(settings.controls.path);
 
 
 //Get Configurations - Dashboard+robots
-
-
-
-
 
 ipc.on('application:quitting', function () {
   if(SteveApi.isPortOpen)

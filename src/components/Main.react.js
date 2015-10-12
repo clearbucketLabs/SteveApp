@@ -15,9 +15,8 @@ var Main = React.createClass({
       <div className="main-container">
         <Header />
         <div className="main-container-body">
-          <div className="main-sidebar"><SideBar /></div>
           <div className="main-content-area">
-          <Router.RouteHandler />
+            <Router.RouteHandler />
           </div>
         </div>
         <AddControlSensor />

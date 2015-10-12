@@ -15,9 +15,6 @@ var MenuTemplate = function () {
           label: 'About ' + settings.menu.label,
           enabled: true,
           click: function () {
-            metrics.track('Opened About', {
-              from: 'menu'
-            });
             router.get().transitionTo('about');
           }
         },
@@ -29,9 +26,6 @@ var MenuTemplate = function () {
           accelerator: util.CommandOrCtrl() + '+H',
           enabled: true,
           click: function () {
-            metrics.track('Opened Dashboard', {
-              from: 'menu'
-            });
             router.get().transitionTo('home');
           }
         },
@@ -40,9 +34,6 @@ var MenuTemplate = function () {
           accelerator: util.CommandOrCtrl() + '+,',
           enabled: true,
           click: function () {
-            metrics.track('Opened Preferences', {
-              from: 'menu'
-            });
             router.get().transitionTo('preferences');
           }
         },

@@ -1,18 +1,16 @@
 var React = require('react/addons'),
-    Router = require('react-router');
-
+    Router = require('react-router'),
+    serialPort = require('serialport');
 
 var Preferences = React.createClass({
   mixins: [Router.Navigation],
   getInitialState: function () {
     return {
-      metricsEnabled: metrics.enabled(),
       selectedPort: ''
     };
   },
   handleGoBackClick: function () {
     this.goBack();
-    metrics.track('Went Back From Preferences');
   },
   render: function () {
     return (
@@ -23,22 +21,11 @@ var Preferences = React.createClass({
 
           <div className="option">
             <div className="option-name">
-              Report anonymous usage analytics
-            </div>
-
-            <div className="option-value">
-              <input type="checkbox" checked={this.state.metricsEnabled} onChange={this.handleChangeMetricsEnabled}/>
-            </div>
-
-          </div>
-
-          <div className="option">
-            <div className="option-name">
                Serial Port
             </div>
 
             <div className="option-value">
-              <SerialPortSelector selectedport={SteveApi.port()}/>
+              <SerialPortSelector/>
             </div>
 
           </div>
@@ -71,7 +58,7 @@ var PortsList = React.createClass({
   },
 
   _onSelect: function(event){
-    SteveApi.setPort(event.target.value);
+  //  SteveApi.setPort(event.target.value);
     this.setState({data: event.target.value});
   }
 

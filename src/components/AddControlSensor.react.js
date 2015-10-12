@@ -50,7 +50,7 @@ var AddControlSensor = React.createClass({
     if (ControlLoader.allControls().length > 0){
       let i=1;
         return(_.map(ControlLoader.allControls(),function(control){
-            return(<li key={i++}><a onClick={that.selectedControl.bind(that,control)}>{control.control.name} ({control.control.type})</a></li>);
+            return(<li key={i++}><a onClick={that.selectedControl.bind(that,control)}>{control.name} ({control.type})</a></li>);
           })
       );
     }

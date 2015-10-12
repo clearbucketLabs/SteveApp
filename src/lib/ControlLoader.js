@@ -3,10 +3,11 @@
  manually 'require' them were needed.  this will handle loading and returning them.
 */
 'use strict'
-let Emitter = require('emitter'),
-    _  = require('lodash'),
+
+let  _  = require('lodash'),
     path = require('path'),
     fs = require('fs');
+
 let loadedControls = [];
 let loaded = false;
 
@@ -41,10 +42,9 @@ let ControlLoader = {
                   });
 
                   _.forEach(controlList,function(n,key){
-                      loadedControls.push({
-                        'filename':n,
-                        'control': require(path.join(currentPath,n))
-                      });
+                      let ctrl = require(path.join(currentPath,n));
+                      ctrl._filename=n;
+                      loadedControls.push(ctrl);
                       console.log("Value: " + n);
                   });
                 });
@@ -59,7 +59,7 @@ let ControlLoader = {
       getControlsByType: function(type){
 
             if(loadedControls.length > 0){
-                return _.return(_.find(loadedControls,type),'type');
+                return _.find(loadedControls,{'type': type});
             }else{
               return undefined;
             }
@@ -68,7 +68,7 @@ let ControlLoader = {
       getControl: function(name){
 
         if(loadedControls.length > 0){
-            return _.return(_.find(loadedControls,name),'name');
+            return _.find(loadedControls,{'name': name});
         }else{
           return undefined;
         }
@@ -77,7 +77,5 @@ let ControlLoader = {
           return loadedControls;
       }
 }
-
-Emitter(ControlLoader);
 
 module.exports = ControlLoader;

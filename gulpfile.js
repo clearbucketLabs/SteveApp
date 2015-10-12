@@ -93,6 +93,12 @@ gulp.task('copy', function() {
     .pipe(gulpif(options.dev, changed('./build')))
     .pipe(gulp.dest(options.dev ? './build' : './dist/osx/' + options.appFilename + '/Contents/Resources/app/build'))
     .pipe(gulpif(options.dev, livereload()));
+
+    gulp.src('robots/**')
+      .pipe(gulpif(options.dev, changed('./build')))
+      .pipe(gulp.dest(options.dev ? './build/robots' : './dist/osx/' + options.appFilename + '/Contents/Resources/app/build/robots'))
+      .pipe(gulpif(options.dev, livereload()));
+
 });
 
 gulp.task('dist', function() {

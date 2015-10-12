@@ -1,64 +1,63 @@
 
-var alt = require('../alt');
-var actions = require('./../actions/dashboardActions');
-var _ = require('lodash');
-var utils = require('./../utils/Util');
+let alt = require('../alt'),
+    _ = require('lodash'),
+    actions = require('./../actions/dashboardActions'),
+    deviceActions = require('./../actions/deviceActions'),
+    utils = require('./../utils/Util'),
+    deviceManager = require('./../lib/deviceManager');
 
-var DashboardStore = alt.createStore({
+let DashboardStore = alt.createStore({
   displayName: 'DashboardStore',
-  loadedDashboard: '',
   bindListeners: {
     addItem: actions.addControl,
     showAddControl: actions.showAddControl,
     hideAddControl: actions.hideAddControl,
-  //  loadLayout: actions.loadLayout,
-  //  saveDashboard: actions.saveDashboard
+    saveDashboard: actions.saveDashboard,
+    deviceLoaded: deviceActions.deviceLoaded
   },
 
   state: {
-    dashboardControlsList: [],
-    addControlVisible: false
+    dashboardControlsList: {},
+    addControlVisible: false,
+    loaded: false,
+    configurationSelected:false
   },
 
   publicMethods: {
     hasControls: function () {
-      return !!this.getState().dashboardControlsList.length;
+      return !!this.state.dashboardControlsList.length;
     }
   },
 
-  loadLayout: function(name){
-
+  deviceLoaded: function(device){
+    //device was selected
+    this.setState({configurationSelected:true});
+    console.log('Dashboard store loaded');
+    var dashboardLayout = deviceManager.getDashboard();
+    this.setState({loaded:true});
   },
 
   saveDashboard: function(layout){
     //From react gridlayout object
-    let dashboardData = {
-          name: this.loadedDashboard,
-          tab: [{ name: "default",
-                  controls: _.map(layout,function(l){
-                      let ctrl = this.findControl(l.i);
-                      return {
-                              controlId: ctrl.control.Id,
-                              name: ctrl.control.name,
-                              type: ctrl.control.type,
-                              layout: {
-                                       w:l.w,
-                                       h:l.h,
-                                       x:l.x,
-                                       y:l.y
-                                      }
-                              }
-    })
-  }]
-  };
+        let dashboardData = {
+              name: 'default',
+              tab: [{ name: "default",
+                      controls: _.map(layout,function(l){
+                          let ctrl = this.state.dashboardControlsList[l.i];
+                          ctrl.layout={w:l.w,h:l.h,x:l.x,y:l.y}
+                          return {
+                                  controlId: ctrl.Id,
+                                  name: ctrl.name,
+                                  type: ctrl.type,
+                                  layout: ctrl.layout
+                                  }
+                        }.bind(this))
+                   }]
+      };
 
+      deviceManager.saveDashboard(dashboardData);
       //Save Async
-      utils.saveDashboardConfiguration(this.loadedDashboard,dashboardData);
-
-  },
-
-  findControl:function(id){
-    return _.return(_.find(this.state.dashboardControlList,id),'Id');
+      return false;
   },
 
   controlChanged: function(){
@@ -81,7 +80,8 @@ var DashboardStore = alt.createStore({
   addItem: function (control) {
     var controls = this.state.dashboardControlsList;
     control.Id = Math.floor(Math.random() * (10000 - 10 + 1)) + 10;
-    controls.push(control);
+    control.layout = {x:0,y:0,w:control.defaultSettings.min_size.w,h:control.defaultSettings.min_size.h};
+    controls[control.Id]=control;
 
     this.setState({
       dashboardControlsList: controls

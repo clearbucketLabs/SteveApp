@@ -28,7 +28,7 @@
        },
 
        loadControl: function() {
-          return React.createElement(this.props.control.control.control);
+          return React.createElement(this.props.control.control);
       },
 
       onRemoveItem: function(i) {

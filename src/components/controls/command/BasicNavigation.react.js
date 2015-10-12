@@ -63,7 +63,7 @@ var control = {
                 type: "command",
                 control: baic_navigation,
                 defaultSettings: {
-                                  min_size: {h: 1, w:2}
+                                  min_size: {h: 6, w:2}
                                   },
                 commands: [ {name: "up",behaviour:"", hasValue:false },
                             {name: "down",behaviour: "", hasValue:false },

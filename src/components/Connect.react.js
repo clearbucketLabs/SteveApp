@@ -11,7 +11,7 @@ var connection = React.createClass({
   },
 
   componentDidMount: function () {
-    },
+  },
 
   onHandleClick: function(){
 

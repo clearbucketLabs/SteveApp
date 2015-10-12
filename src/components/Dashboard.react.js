@@ -23,11 +23,11 @@ var Dashboard = React.createClass({
   },
   getInitialState: function() {
     return {
-      loaded: true,
+      loaded: DashboardStore.getState().loaded,
       editing: false,
+      configurationSelected: DashboardStore.getState().configurationSelected,
       controls:  DashboardStore.getState().dashboardControlsList,
       controlData:[],
-
     };
   },
 
@@ -36,19 +36,14 @@ var Dashboard = React.createClass({
     this.setState({controls: controls});
   },
 
-  onControlData: function(){
-
-  },
-
   // We're using the cols coming back from this to calculate where to add new items.
   onBreakpointChange: function(breakpoint, cols) {
 
   },
-
   onLayoutChange: function(layout) {
-    //this.props.onLayoutChange(layout);
-    //this.setState({layout: layout});
+  //  this.setState({layout: layout});
     dashboardActions.saveDashboard(layout);
+    //return true;
   },
 
   onRemoveItem: function(i) {
@@ -69,14 +64,14 @@ var Dashboard = React.createClass({
 
         if(_this.state.controlData.length > 0)
         {
-            let result = _.result(_.find(control.control, control.Id), 'controlId');
+            let result = _this.state_controlData[control.Id];
               if(!_.isUndefined(result)){
-                controlData = result;
+                  controlData = result;
               }
         }
 
         return (
-          <div key={control.Id}>
+          <div key={control.Id} _grid={control.layout}>
             <Control control={control} data={controldata}></Control>
           </div>
           );
@@ -90,7 +85,7 @@ var Dashboard = React.createClass({
         return (<div className="Loading">Loading...</div>);
       }
 
-      if(this.state.controls.length == 0){
+      if(_.keys(this.state.controls).length == 0){
         return(
           <div className="home">
             <div className="home-content">
