@@ -16,6 +16,7 @@ let alt = require('../alt'),
     actions = require('./../actions/interfaceActions'),
     controlDataActions = require('./../actions/controlDataActions'),
     deviceActions = require('./../actions/deviceActions'),
+    dashboardActions = require('./../actions/dashboardActions'),
     _ = require('lodash');
 
 
@@ -35,10 +36,20 @@ let RemoteReceiveStore = alt.createStore({
 
   _mapper: undefined,
   _parser: undefined,
+  _deviceLoaded: false,
   displayName: 'DataStore',
   bindListeners: {
     onControlCommand: controlDataActions.triggerCommand,
-    onDeviceLoaded: deviceActions.deviceLoaded
+    onDeviceLoaded: deviceActions.deviceLoaded,
+    onDashboardUnloading: dashboardActions.unloading
+  },
+
+  onDashboardUnloading: function(){
+
+    //Unload/Cleanup
+      if(this._deviceLoaded){
+        this._deviceLoaded=false;
+      }
   },
 
   onDeviceLoaded: function(){
@@ -46,7 +57,7 @@ let RemoteReceiveStore = alt.createStore({
     //We loaded a device configuration, lets wire it up
     console.log('data store device loaded');
 
-    
+    this._deviceLoaded=true;
 
   },
 

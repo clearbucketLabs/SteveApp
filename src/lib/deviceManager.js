@@ -5,6 +5,7 @@
      fs = require('fs'),
      path = require('path'),
      SerialInterface = require('./../connection/serialInterface'),
+     DeviceInterface = require('./../connection/DummyInterface'),
      responseParser = require('./../lib/Parser');
 
 
@@ -146,27 +147,26 @@ module.exports = {
 
         if(started){
           for(conn in connections){
-              conn.deviceInterface.stop();
+              conn.deviceInterface.close();
           }
-
           started=false;
         }
-
       },
 
       unloadDevice: function(){
 
         this.stop();
-        connections={};
+        _config = undefined;
+        _dashboard=undefined;
+        connections=undefined;
         deviceLoaded='';
         loaded=false;
-
       },
-
         //Load configuration and create interfaces for connections
       loadDevice: function(name){
 
-        var config = openDeviceConfig(name);
+        let config = openDeviceConfig(name);
+        let connectionsCount =0;
 
         if(config === false){
           return false;
@@ -175,8 +175,17 @@ module.exports = {
 
         _.each(config.connections,function(deviceInterface){
 
+                  let interfaceDriver;
+
                   if(deviceInterface.type==='serial'){
-                        let SerialPort = new SerialInterface();
+                        interfaceDriver = new SerialInterface();
+                  }else if(deviceInterface.type==='test'){
+                        interfaceDriver = new DummyInterface();
+                  }else{
+                    console.log('device type ' + deviceInterface.type + ' not supported');
+                  }
+
+                    if(!_.isUndefined(interfaceDriver)){
 
                         if(deviceInterface.r_sync.length > 0){
                             SerialPort.setRSync(deviceInterface.r_sync);
@@ -193,21 +202,25 @@ module.exports = {
                           }
 
                         connections[deviceInterface.name] = {
-                                                              deviceInterface: SerialPort,
+                                                              deviceInterface: interfaceDriver,
                                                               configuration: deviceInterface,
                                                               responseParser: new responseParser(responseRuleData),
                                                               connected:false
                                                         };
-                      }
+                        connectionsCount++;
+                    }
                 }
-      );
-          _config = config;
-          _dashboard = loadConfiguration(name,'dashboard');
-          _mapping = loadConfiguration(name,'mapping');
+          );
 
-          loaded=true;
-          deviceLoaded = name;
 
+          if(connectionsCount > 0){
+                _config = config;
+                _dashboard = loadConfiguration(name,'dashboard');
+                _mapping = loadConfiguration(name,'mapping');
+
+                loaded=true;
+                deviceLoaded = name;
+          }
 
          return connections;
     }

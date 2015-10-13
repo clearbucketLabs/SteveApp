@@ -6,11 +6,16 @@ var ReactGridLayout = require('react-grid-layout');
 var Control = require('./Control.react');
 var DashboardStore = require("./../stores/DashboardStore");
 var dashboardActions =require("./../actions/dashboardActions");
+var deviceActions =require("./../actions/deviceActions");
+
 
 var Dashboard = React.createClass({
 
   componentWillUnmount() {
+
     DashboardStore.unlisten(this.onDashboardChanged);
+    dashboardActions.unloading();
+
   },
   componentDidMount: function(){
     DashboardStore.listen(this.onDashboardChanged);

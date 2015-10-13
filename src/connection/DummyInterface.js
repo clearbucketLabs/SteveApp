@@ -1,6 +1,6 @@
 let settings = require('../settings'),
-    actions = require('../actions/interfaceActions');
-
+    actions = require('../actions/interfaceActions'),
+    events = require('events');
 
 let _buffersize = 1,
     _name = "dummy",
@@ -13,40 +13,73 @@ let packets = [[0xAA,0x00,0x01,0x02,0x00,0x02],
 
 let packetIndex = 0;
 
-let sendSomething = function(){
 
-    let packet = packets[packetIndex];
-    let chunks = _.chunk(packet,buffersize);
+let dummyInterface = function(){
 
 
-    _.each(chunks,function(d){
+  events.EventEmitter.call(this);
+  let _interval = 5000; //5 sec
+  let _rsync ='';
+  let _tsync ='';
 
-    });
+  let sendSomething = function(){
+      let that = this;
+      let packet = packets[packetIndex];
+      let chunks = _.chunk(packet,buffersize);
 
-}
+      _.each(chunks,function(d){
+          that.emit('device.dataReceived',d); //emit via event...
+      });
 
-module.exports = {
+      packetIndex++;
 
-      init: function(){
+      if(packetIndex > (packets.length-1)){
+        packetIndex=0;
+      }
+  }
+
+
+return {
+
+      init: function(interval){
+          _interval = interval;
       },
       getType: function(){
         return _name;
       },
-
-      isPortOpen: function(){
+      setRSync: function(sync){
+        _rsync=sync;
+      },
+      setTSync: function(sync){
+        _tsync=sync;
+      },
+      isOpen: function(){
         return _portOpen;
       },
 
-      openPort: function(){
+      send: function(){
+          //send something...
+      },
+
+      open: function(){
 
           if (!_portOpen){
+
+              this.emit('device.connected');
+
               setInterval(function(){
                     sendSomething.call(this);
-              }.bind(this),10000);
+              }.bind(this),5000);
 
           }
       },
-      closePort: function(){
+      close: function(){
           _portOpen = false;
+          this.emit('device.connectionClosed',false);
       }
-};
+  };
+}
+
+dummyInterface.__proto__ = events.EventEmitter.prototype;
+
+module.exports = dummyInterface;

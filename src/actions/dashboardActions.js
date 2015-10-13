@@ -17,6 +17,9 @@ var DashboardActions=alt.createActions({
                     saveDashboard: function (layout){
                       this.dispatch(layout);
                     },
+                    unloading: function(){
+                      this.dispatch();
+                    }
 });
 
 module.exports = DashboardActions;

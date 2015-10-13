@@ -60,18 +60,18 @@ let deviceInterface = function(){
 
       }.bind(this),
 
-      writePort: function(data){
+      send: function(data){
         _serialport.write(data, function(err, results) {
           console.log('err ' + err);
           console.log('results ' + results);
         });
       },
 
-      isPortOpen: function(){
+      isOpen: function(){
         return _portOpen;
       },
 
-      openPort: function(){
+      open: function(){
 
       if (!_portOpen){
           _serialPort.open(function (error) {
@@ -110,7 +110,7 @@ let deviceInterface = function(){
 
       }.bind(this),
 
-      closePort: function(){
+      close: function(){
           _serialPort.close(function(){
             _portOpen=false;
           }.bind(this));

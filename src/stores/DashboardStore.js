@@ -48,8 +48,7 @@ let DashboardStore = alt.createStore({
         var control = controlLoader.getControl(item.guid);
 
             control.layout=item.layout;
-            control.Id=item.Id;
-
+            control.Id=item.id;
             controlList[control.Id]=control;
     });
 
@@ -66,7 +65,8 @@ let DashboardStore = alt.createStore({
                           let ctrl = this.state.dashboardControlsList[l.i];
                           ctrl.layout={w:l.w,h:l.h,x:l.x,y:l.y}
                           return {
-                                  Id: ctrl.Id,
+                                  id: ctrl.Id,
+                                  guid: ctrl.guid,
                                   name: ctrl.name,
                                   type: ctrl.type,
                                   layout: ctrl.layout
